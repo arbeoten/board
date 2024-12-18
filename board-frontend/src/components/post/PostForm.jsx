@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useState, useCallback } from 'react'
 import { TextField, Button, Box } from '@mui/material'
 
 const PostForm = ({ onSubmit, initialValues = {} }) => {
@@ -38,12 +38,15 @@ const PostForm = ({ onSubmit, initialValues = {} }) => {
          formData.append('content', content)
          formData.append('title', title)
          // 한글 처리용 인코딩
-         const encodeFile = new File([imgFile], encodeURIComponent(imgFile.name), { type: imgFile.type })
-         formData.append('img', imgFile)
+         if (imgFile) {
+            // 파일명 인코딩(한글 파일명 깨짐 방지)
+            const encodedFile = new File([imgFile], encodeURIComponent(imgFile.name), { type: imgFile.type })
 
+            formData.append('img', encodedFile) //이미지 파일 추가
+         }
          onSubmit(formData) // formData 객체 전송
       },
-      [content, imgFile, title, onSubmit]
+      [content, imgFile, title, onSubmit, initialValues.id]
    )
    return (
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }} encType="multipart/form-data">

@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useCallback } from 'react'
 import { fetchPostByIdThunk } from '../features/postSlice'
 import { useParams } from 'react-router-dom'
-import { Box, IconButton } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
-import EditIcon from '@mui/icons-material/Edit'
+import { Box } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { deletePostThunk } from '../features/postSlice'
 
@@ -48,7 +46,7 @@ const PostViewPage = ({ isAuthenticated, user }) => {
          {post && (
             <Container maxWidth="md">
                <h1>{post.title}</h1>
-               <p>{post.User.nick}</p>
+               <p>닉네임 : {post.User.nick}</p>
                {isAuthenticated && post.User.id === user.id && (
                   <Box sx={{ p: 2 }}>
                      <Link to={`/posts/edit/${post.id}`}>
@@ -59,7 +57,7 @@ const PostViewPage = ({ isAuthenticated, user }) => {
                )}
                <hr></hr>
                <img src={`${process.env.REACT_APP_API_URL}${post.img}`} width={'100%'} alt="이미지"></img>
-               <h2>{post.content}</h2>
+               <p>{post.content}</p>
                <hr></hr>
                <button onClick={handleBack}>돌아가기</button>
             </Container>
