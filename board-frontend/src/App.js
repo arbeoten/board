@@ -9,6 +9,7 @@ import PostCreatePage from './pages/PostCreatePage'
 import PostEditPage from './pages/PostEditPage'
 import PostViewPage from './pages/PostViewPage'
 import BoardPage from './pages/BoardPage'
+import MyPage from './pages/MyPage.jsx'
 
 function App() {
    const dispatch = useDispatch()
@@ -27,6 +28,7 @@ function App() {
             <Route path="/posts/edit/:id" element={<PostEditPage />} />
             <Route path="/posts/view/:id" element={<PostViewPage isAuthenticated={isAuthenticated} user={user} />} />
             <Route path="/board" element={<BoardPage isAuthenticated={isAuthenticated} user={user} />} />
+            <Route path="/mypage/:id" element={<MyPage auth={user} />} />
          </Routes>
       </>
    )

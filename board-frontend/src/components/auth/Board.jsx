@@ -22,24 +22,26 @@ const Board = ({ isAuthenticated, user }) => {
          {posts.length > 0 ? (
             <>
                <table>
-                  <tr>
-                     <th>이미지</th>
-                     <th>글번호</th>
-                     <th>제목</th>
-                     <th>작성일</th>
-                     <th>작성자</th>
-                  </tr>
-                  {posts.map((post) => (
-                     <PostItem key={post.id} post={post} isAuthenticated={isAuthenticated} user={user} />
-                  ))}
-                  <Stack spacing={2} sx={{ mt: 3, alignItems: 'center' }}>
-                     <Pagination
-                        count={pagination.totalPages} // 총 페이지
-                        page={page} // 현재 페이지
-                        onChange={handlePageChange} // 페이지 변경 함수
-                     />
-                  </Stack>
+                  <tbody>
+                     <tr>
+                        <th>이미지</th>
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>작성일</th>
+                        <th>작성자</th>
+                     </tr>
+                     {posts.map((post) => (
+                        <PostItem key={post.id} post={post} isAuthenticated={isAuthenticated} user={user} />
+                     ))}
+                  </tbody>
                </table>
+               <Stack spacing={2} sx={{ mt: 3, alignItems: 'center' }}>
+                  <Pagination
+                     count={pagination.totalPages} // 총 페이지
+                     page={page} // 현재 페이지
+                     onChange={handlePageChange} // 페이지 변경 함수
+                  />
+               </Stack>
             </>
          ) : (
             !loading && (

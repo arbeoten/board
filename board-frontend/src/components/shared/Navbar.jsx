@@ -27,6 +27,9 @@ const Navbar = ({ isAuthenticated, user }) => {
             <>
                <p> {user?.nick} 님</p>
                <button onClick={handleLogout}>로그아웃</button>
+               <Link to={`/mypage/${user.id}`}>
+                  <p>마이페이지</p>
+               </Link>
             </>
          ) : (
             <p>로그인해주세요</p>

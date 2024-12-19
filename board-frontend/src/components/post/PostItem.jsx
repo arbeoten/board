@@ -18,7 +18,9 @@ const PostItem = ({ post, isAuthenticated, user }) => {
             <Link to={`/posts/view/${post.id}`}>{post.title}</Link>
          </StyledTd>
          <StyledTd>{dayjs(post.createdAt).format('YYYY-MM-DD HH:mm:ss')}</StyledTd>
-         <StyledTd>{post.User.nick}</StyledTd>
+         <StyledTd>
+            <Link to={`/mypage/${post.User.id}`}>{post.User.nick}</Link>
+         </StyledTd>
       </tr>
    )
 }

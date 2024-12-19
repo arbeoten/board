@@ -120,3 +120,14 @@ export const getPosts = async (page) => {
       throw error
    }
 }
+
+// 마이페이지
+export const getProfileId = async (id) => {
+   try {
+      const response = await boardApi.get(`/mypage/${id}`) // api 통신
+      return response
+   } catch (error) {
+      console.error(`API 요청 오류: ${error.message}`)
+      throw error
+   }
+}
